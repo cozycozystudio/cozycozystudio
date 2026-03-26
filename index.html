@@ -12,13 +12,13 @@
         /* 기본 스타일 초기화 */
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow-x: hidden; font-family: 'Pretendard', sans-serif; background-color: #fdfaf5; color: #1a2a40; }
 
-        /* 대문 (Hero Section) 스타일 - 로고 움직이는 구간 */
+        /* 대문 (Hero Section) 스타일 - 여러 줄 롤링 효과 */
         .hero { width: 100vw; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #1a2a40; /* 딥블루 배경 */ overflow: hidden; position: relative; }
 
         /* 로고 스타일 (image_24.png 레퍼런스 반영) */
-        .marquee-container { width: 100%; overflow: hidden; position: relative; display: flex; /* 로고가 사선으로 흐르게 하기 위해 각도를 줌 */ transform: rotate(-5deg) scale(1.1); }
+        .marquee-container { width: 100%; overflow: hidden; position: relative; display: flex; flex-direction: column; /* 여러 줄로 배치 */ transform: rotate(-5deg) scale(1.1); gap: 10px; /* 줄 간격 */ }
 
-        .marquee-content { display: flex; white-space: nowrap; /* 애니메이션 정의: 수평으로 무한 반복 */ animation: marquee 20s linear infinite; }
+        .marquee-content { display: flex; white-space: nowrap; /* 애니메이션 정의: 수평으로 무한 반복 */ }
 
         /* 마우스 커서를 올리면 애니메이션 멈춤 (요청하신 효과) */
         .marquee-container:hover .marquee-content { animation-play-state: paused; }
@@ -30,45 +30,69 @@
         /* 화이트(또는 크림)색 글자 스타일 */
         .white-text { color: #fdfaf5; }
 
+        /* 애니메이션 속도 및 방향 설정 */
+        .speed-1 { animation: marquee 20s linear infinite; }
+        .speed-2 { animation: marquee-reverse 25s linear infinite; } /* 역방향 속도 */
+
         /* 대문 문구 및 버튼 스타일 */
-        .hero-text-content { position: absolute; bottom: 10%; text-align: center; color: #fdfaf5; z-index: 10; }
+        .hero-text-content { position: absolute; bottom: 10%; text-align: center; color: #fdfaf5; z-index: 10; opacity: 1; transition: opacity 0.5s; }
         .hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
         .hero p { font-size: 1rem; opacity: 0.8; margin-bottom: 1.5rem; }
         .cta-btn { display: inline-block; padding: 12px 24px; background: #fdfaf5; color: #1a2a40; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
         .cta-btn:hover { background: #ff6b35; color: #fdfaf5; }
 
-        /* 포트폴리오 섹션 스타일 (기존과 동일) */
+        /* 포트폴리오 섹션 스타일 */
         .portfolio { padding: 50px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .video-card { background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
         iframe { width: 100%; border-radius: 15px; aspect-ratio: 16/9; border: none; }
         .video-card h3 { margin-top: 15px; font-size: 1.1rem; }
 
-        /* 무한 롤링 애니메이션 정의 */
+        /* 무한 롤링 애니메이션 정의 (정방향) */
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } /* 콘텐츠의 반만 이동했을 때 처음과 이어지게 함 */ }
+
+        /* 무한 롤링 애니메이션 정의 (역방향) */
+        @keyframes marquee-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } /* 콘텐츠의 반만 이동했을 때 처음과 이어지게 함 */ }
+
+        /* 스크롤에 반응하여 사라지는 효과 (JS로 제어) */
+        .fade-out { opacity: 0; filter: blur(10px); transform: scale(1.5); transition: opacity 1s, filter 1s, transform 1s; }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
-                <span class="logo-text white-text">COZYCOZYSTUDIO</span>
+    <section class="hero" id="hero">
+        <div class="marquee-container" id="marquee-container">
+            <div class="marquee-content speed-1">
                 <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
                 <span class="logo-text white-text">COZYCOZYSTUDIO</span>
             </div>
-            <div class="marquee-content" aria-hidden="true">
+            <div class="marquee-content speed-1" aria-hidden="true">
                 <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
                 <span class="logo-text white-text">COZYCOZYSTUDIO</span>
+            </div>
+
+            <div class="marquee-content speed-2">
+                <span class="logo-text white-text">COZYCOZYSTUDIO</span>
+                <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
+            </div>
+            <div class="marquee-content speed-2" aria-hidden="true">
+                <span class="logo-text white-text">COZYCOZYSTUDIO</span>
+                <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
+            </div>
+
+            <div class="marquee-content speed-1">
+                <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
+                <span class="logo-text white-text">COZYCOZYSTUDIO</span>
+            </div>
+            <div class="marquee-content speed-1" aria-hidden="true">
                 <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
                 <span class="logo-text white-text">COZYCOZYSTUDIO</span>
             </div>
         </div>
 
-        <div class="hero-text-content">
+        <div class="hero-text-content" id="hero-text-content">
             <h1>CozyCozy Studio</h1>
             <p>딸깍만 하세요. 저희가 만들게요.</p>
-            <a href="mailto:cozycozystudio@email.com" class="cta-btn">제작 문의하기</a>
+            <a href="mailto:cozydaa1@gmail.com" class="cta-btn">제작 문의하기</a>
         </div>
     </section>
 
@@ -82,6 +106,26 @@
             <h3>몰입감 넘치는 뮤직비디오</h3>
         </div>
     </section>
+
+    <script>
+        const hero = document.getElementById('hero');
+        const marqueeContainer = document.getElementById('marquee-container');
+        const heroTextContent = document.getElementById('hero-text-content');
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroHeight = hero.offsetHeight;
+
+            // 스크롤이 포트폴리오 섹션 근처에 도달하면 대문 요소 사라지게 함
+            if (scrollY > heroHeight * 0.7) {
+                marqueeContainer.classList.add('fade-out');
+                heroTextContent.style.opacity = '0';
+            } else {
+                marqueeContainer.classList.remove('fade-out');
+                heroTextContent.style.opacity = '1';
+            }
+        });
+    </script>
 
 </body>
 </html>
