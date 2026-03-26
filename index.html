@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CozyCozy Studio | 코지코지스튜디오</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body { margin: 0; font-family: 'Pretendard', sans-serif; background-color: #fdfaf5; color: #1a2a40; text-align: center; }
+        header { padding: 100px 20px; background: #1a2a40; color: #fdfaf5; }
+        h1 { font-size: 3rem; margin-bottom: 10px; }
+        p { font-size: 1.2rem; opacity: 0.8; }
+        .cta-btn { display: inline-block; margin-top: 20px; padding: 15px 30px; background: #fdfaf5; color: #1a2a40; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .cta-btn:hover { background: #e0d5c1; }
+        .portfolio { padding: 50px 20px; max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .video-card { background: white; padding: 10px; border-radius: 15px; shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        iframe { width: 100%; border-radius: 10px; aspect-ratio: 16/9; border: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CozyCozy Studio</h1>
+        <p>딸깍만 하세요. 저희가 만들게요.</p>
+        <a href="mailto:이메일주소" class="cta-btn">제작 문의하기</a>
+    </header>
+
+    <section class="portfolio">
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/영상ID" allowfullscreen></iframe>
+            <h3>Project 01</h3>
+        </div>
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/영상ID" allowfullscreen></iframe>
+            <h3>Project 02</h3>
+        </div>
+    </section>
+</body>
+</html>
