@@ -7,19 +7,29 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <style>
-        /* 1. 업로드하신 커스텀 폰트 설정 */
+        /* 1. 두 가지 커스텀 폰트(@font-face) 설정 */
+        
+        /* 대문 로고용 (900 - 아주 두꺼움) */
         @font-face {
-            font-family: 'PartialSans';
-            src: url('PartialSansKR-Regular.otf') format('opentype');
-            font-weight: normal;
+            font-family: 'A2Z-900';
+            src: url('A2Z-900.otf') format('opentype');
+            font-weight: 900;
             font-style: normal;
         }
 
-        /* 기본 스타일 초기화 */
+        /* 나머지 웹사이트용 (300 - 얇음) */
+        @font-face {
+            font-family: 'A2Z-300';
+            src: url('A2Z-300.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        /* 2. 기본 스타일 설정 (나머지 웹사이트용 폰트 적용) */
         body, html { 
             margin: 0; padding: 0; width: 100%; height: 100%; 
             overflow-x: hidden; 
-            font-family: 'PartialSans', sans-serif; /* 커스텀 폰트 적용 */
+            font-family: 'A2Z-300', sans-serif; /* 기본 폰트 설정 */
             background-color: #fdfaf5; 
             color: #1a2a40; 
         }
@@ -32,144 +42,4 @@
             overflow: hidden; position: relative; 
         }
 
-        /* 로고 롤링 컨테이너 */
-        .marquee-container { 
-            width: 100%; overflow: hidden; position: relative; 
-            display: flex; flex-direction: column; 
-            transform: rotate(-5deg) scale(1.1); 
-            gap: 0; 
-        }
-
-        /* 각 한 줄에 대한 스타일 */
-        .marquee-row { 
-            display: flex; width: 100%; white-space: nowrap; overflow: hidden; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); /* 줄 사이 미세한 구분선 */
-        }
-
-        .marquee-content { display: flex; white-space: nowrap; }
-
-        /* 마우스 커서를 올리면 해당 줄만 애니메이션 멈춤 */
-        .marquee-row:hover .marquee-content { animation-play-state: paused; cursor: pointer; }
-
-        .logo-text { 
-            font-size: 12vw; /* 폰트 느낌에 맞춰 크기 살짝 조정 */
-            font-weight: 900; 
-            text-transform: uppercase; 
-            letter-spacing: -0.02em; 
-            padding: 0 1.5vw; 
-        }
-
-        .orange-text { color: #ff6b35; }
-        .white-text { color: #fdfaf5; }
-
-        /* 무한 루프 애니메이션 (한 줄씩 독립적으로 작동) */
-        .speed-1 .marquee-content { animation: marquee 25s linear infinite; }
-        .speed-2 .marquee-content { animation: marquee-reverse 30s linear infinite; }
-
-        /* 대문 문구 및 버튼 스타일 */
-        .hero-text-content { 
-            position: absolute; bottom: 8%; text-align: center; color: #fdfaf5; z-index: 10; 
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .hero p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; }
-        
-        .cta-btn { 
-            display: inline-block; padding: 14px 28px; 
-            background: #ff6b35; color: #fdfaf5; 
-            text-decoration: none; border-radius: 50px; 
-            font-weight: bold; transition: 0.3s; 
-        }
-        .cta-btn:hover { background: #fdfaf5; color: #1a2a40; transform: translateY(-3px); }
-
-        /* 포트폴리오 섹션 */
-        .portfolio { padding: 100px 20px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .video-card { background: white; padding: 20px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: 0.3s; }
-        .video-card:hover { transform: translateY(-10px); }
-        iframe { width: 100%; border-radius: 15px; aspect-ratio: 16/9; border: none; }
-
-        /* 무한 롤링 키프레임 */
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-        @keyframes marquee-reverse { 0% { transform: translateX(-100%); } 100% { transform: translateX(0); } }
-
-        /* 스크롤 사라짐 효과 */
-        .fade-out { opacity: 0; filter: blur(20px); transform: scale(1.8) rotate(-10deg); transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
-    </style>
-</head>
-<body>
-
-    <section class="hero" id="hero">
-        <div class="marquee-container" id="marquee-container">
-            <div class="marquee-row speed-1">
-                <div class="marquee-content">
-                    <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
-                    <span class="logo-text white-text">COZYCOZYSTUDIO</span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
-                    <span class="logo-text white-text">COZYCOZYSTUDIO</span>
-                </div>
-            </div>
-
-            <div class="marquee-row speed-2">
-                <div class="marquee-content">
-                    <span class="logo-text white-text">COZYCOZYSTUDIO</span>
-                    <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="logo-text white-text">COZYCOZYSTUDIO</span>
-                    <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
-                </div>
-            </div>
-
-            <div class="marquee-row speed-1">
-                <div class="marquee-content">
-                    <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
-                    <span class="logo-text white-text">COZYCOZYSTUDIO</span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="logo-text orange-text">COZYCOZYSTUDIO</span>
-                    <span class="logo-text white-text">COZYCOZYSTUDIO</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-text-content" id="hero-text-content">
-            <h1>COZYCOZY STUDIO</h1>
-            <p>당신의 상상을 현실로, 딸깍 하나로 완성하는 영상 스튜디오</p>
-            <a href="mailto:cozycozystudio@gmail.com" class="cta-btn">PROJECT INQUIRY</a>
-        </div>
-    </section>
-
-    <section class="portfolio">
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/영상ID" allowfullscreen></iframe>
-            <h3>Portfolio 01</h3>
-        </div>
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/영상ID" allowfullscreen></iframe>
-            <h3>Portfolio 02</h3>
-        </div>
-    </section>
-
-    <script>
-        const hero = document.getElementById('hero');
-        const marqueeContainer = document.getElementById('marquee-container');
-        const heroTextContent = document.getElementById('hero-text-content');
-
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const heroHeight = hero.offsetHeight;
-
-            if (scrollY > heroHeight * 0.3) { // 조금 더 빨리 사라지기 시작하도록 수정
-                marqueeContainer.classList.add('fade-out');
-                heroTextContent.classList.add('fade-out');
-            } else {
-                marqueeContainer.classList.remove('fade-out');
-                heroTextContent.classList.remove('fade-out');
-            }
-        });
-    </script>
-
-</body>
-</html>
+        /* 로
